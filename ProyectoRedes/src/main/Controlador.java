@@ -44,13 +44,13 @@ public class Controlador implements Initializable {
 	private TextField txtFieldRangoHosts; // Value injected by FXMLLoader
 
 	@FXML // fx:id="txtFieldDireccionIP1"
-	private TextField txtFieldDireccionIP1; // Value injected by FXMLLoader
+	private TextField txtFieldDireccionIP2; // Value injected by FXMLLoader
 
-	@FXML // fx:id="btnCalcular1"
-	private Button btnCalcular1; // Value injected by FXMLLoader
+	@FXML // fx:id="btnCalcular2"
+	private Button btnCalcular2; // Value injected by FXMLLoader
 
-	@FXML // fx:id="txtFieldDireccionRed2"
-	private TextField txtFieldDireccionRed2; // Value injected by FXMLLoader
+	@FXML // fx:id="txtFieldMascara"
+	private TextField txtFieldMascara; // Value injected by FXMLLoader
 
 	@FXML // fx:id="txtFieldBroadcast2"
 	private TextField txtFieldBroadcast2; // Value injected by FXMLLoader
@@ -85,8 +85,8 @@ public class Controlador implements Initializable {
 		cBoxMascara2.getItems().clear();
 		cBoxMascara.setItems(obList);
 		cBoxMascara2.setItems(obList);
-		cBoxMascara.getSelectionModel().selectFirst();
-		cBoxMascara2.getSelectionModel().selectFirst();
+		cBoxMascara.getSelectionModel().select(16);
+		cBoxMascara2.getSelectionModel().select(16);
 
 	}
 
@@ -96,23 +96,48 @@ public class Controlador implements Initializable {
 
 			int mascaraSimplificada = Integer
 					.parseInt(cBoxMascara.getSelectionModel().getSelectedItem().toString().substring(1));
-			if (mascaraSimplificada <= 30) {
-				String mascaraDecimal = convertirMascaraSimplificadaADecimal(mascaraSimplificada);
-				String direccionRed = encontrarDireccionRed(ipHost, mascaraDecimal);
-				txtFieldDireccionRed.setText(direccionRed);
 
-				int bitsHost = 32 - mascaraSimplificada;
-				String direccionBroadcast = encontrarDireccionBroadCast(direccionRed, bitsHost);
-				txtFieldBroadcast.setText((direccionBroadcast));
-				int cantidadHosts = (int) Math.pow(2, bitsHost);
-				txtFieldCantidadHosts.setText(cantidadHosts + "");
+			String mascaraDecimal = convertirMascaraSimplificadaADecimal(mascaraSimplificada);
+			System.out.println(mascaraDecimal);
+			String direccionRed = encontrarDireccionRed(ipHost, mascaraDecimal);
+			txtFieldDireccionRed.setText(direccionRed);
 
-				int[] octetosIP = devolverOctetos(direccionRed);
-				int[] octetosMascara = devolverOctetos(direccionBroadcast);
-				txtFieldRangoHosts.setText(octetosIP[0] + "." + octetosIP[1] + "." + octetosIP[2] + "."
-						+ (octetosIP[3] + 1) + " -  " + octetosMascara[0] + "." + octetosMascara[1] + "."
-						+ octetosMascara[2] + "." + (octetosMascara[3] - 1));
-			}
+			int bitsHost = 32 - mascaraSimplificada;
+			String direccionBroadcast = encontrarDireccionBroadCast(direccionRed, bitsHost);
+			txtFieldBroadcast.setText((direccionBroadcast));
+			int cantidadHosts = (int) Math.pow(2, bitsHost);
+			txtFieldCantidadHosts.setText(cantidadHosts + "");
+
+			int[] octetosIP = devolverOctetos(direccionRed);
+			int[] octetosMascara = devolverOctetos(direccionBroadcast);
+			txtFieldRangoHosts.setText(octetosIP[0] + "." + octetosIP[1] + "." + octetosIP[2] + "." + (octetosIP[3] + 1)
+					+ " -  " + octetosMascara[0] + "." + octetosMascara[1] + "." + octetosMascara[2] + "."
+					+ (octetosMascara[3] - 1));
+
+		} else {
+			Alert alert = new Alert(AlertType.WARNING, "IP incorrecta", ButtonType.OK);
+			alert.showAndWait();
+		}
+	}
+
+	public void calcular22() {
+		String direccionRed = txtFieldDireccionIP2.getText();
+		if (validarIpConMascara(direccionRed)) {
+
+			int mascaraSimplificada = Integer
+					.parseInt(cBoxMascara2.getSelectionModel().getSelectedItem().toString().substring(1));
+
+			String mascaraDecimal = convertirMascaraSimplificadaADecimal(mascaraSimplificada);
+			System.out.println(mascaraDecimal);
+			txtFieldMascara.setText(mascaraDecimal);
+			txtFieldBitsRed.setText(mascaraSimplificada + "");
+			int bitsHost = 32 - mascaraSimplificada;
+			txtFieldBitsHosts.setText(bitsHost + "");
+			String direccionBroadcast = encontrarDireccionBroadCast(direccionRed, bitsHost);
+			txtFieldBroadcast2.setText((direccionBroadcast));
+			int cantidadHosts = (int) Math.pow(2, bitsHost);
+			txtFieldCantidadHosts2.setText(cantidadHosts + "");
+
 		} else {
 			Alert alert = new Alert(AlertType.WARNING, "IP incorrecta", ButtonType.OK);
 			alert.showAndWait();

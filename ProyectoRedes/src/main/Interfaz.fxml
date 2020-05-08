@@ -102,7 +102,7 @@
                            </rowConstraints>
                            <children>
                               <Label layoutX="30.0" layoutY="57.0" text="Dirección IP host" />
-                              <TextField fx:id="txtFieldDireccionIP1" prefHeight="25.0" prefWidth="313.0" promptText="192.168.1.0" GridPane.columnIndex="1" />
+                              <TextField fx:id="txtFieldDireccionIP2" prefHeight="25.0" prefWidth="313.0" promptText="192.168.1.0" text="192.168.1.0" GridPane.columnIndex="1" />
                               <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
@@ -111,7 +111,7 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
                                  </rowConstraints>
                                  <children>
-                                    <Button fx:id="btnCalcular1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Calcular" GridPane.hgrow="ALWAYS">
+                                    <Button fx:id="btnCalcular2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#calcular22" text="Calcular" GridPane.hgrow="ALWAYS">
                                        <GridPane.margin>
                                           <Insets top="10.0" />
                                        </GridPane.margin>
@@ -140,7 +140,7 @@
                               <RowConstraints minHeight="10.0" percentHeight="100.0" prefHeight="30.0" vgrow="ALWAYS" />
                            </rowConstraints>
                            <children>
-                              <TextField fx:id="txtFieldDireccionRed2" editable="false" prefHeight="25.0" prefWidth="301.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" />
+                              <TextField fx:id="txtFieldMascara" editable="false" prefHeight="25.0" prefWidth="301.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" />
                               <TextField fx:id="txtFieldBroadcast2" editable="false" layoutX="293.0" layoutY="74.0" prefHeight="25.0" prefWidth="301.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
                               <TextField fx:id="txtFieldCantidadHosts2" editable="false" layoutX="293.0" layoutY="167.0" prefHeight="25.0" prefWidth="301.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" />
                               <Label text="Máscara de subred" />
