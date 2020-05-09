@@ -10,7 +10,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("Interfaz.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/vista/Interfaz.fxml"));
 			Scene scene = new Scene(root);
 			primaryStage.setTitle("Calculadora IP");
 			primaryStage.setResizable(false);

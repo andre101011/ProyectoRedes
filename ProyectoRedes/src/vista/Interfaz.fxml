@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Controlador">
+<VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.Controlador">
    <children>
       <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="341.0" prefWidth="479.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
         <tabs>
@@ -42,7 +42,7 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
                                 </rowConstraints>
                                  <children>
-                                    <Button fx:id="btnCalcular" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#calcular21" text="Calcular" GridPane.hgrow="ALWAYS">
+                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#calcular21" text="Calcular" GridPane.hgrow="ALWAYS">
                                        <GridPane.margin>
                                           <Insets top="10.0" />
                                        </GridPane.margin>
@@ -111,7 +111,7 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
                                  </rowConstraints>
                                  <children>
-                                    <Button fx:id="btnCalcular2" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#calcular22" text="Calcular" GridPane.hgrow="ALWAYS">
+                                    <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#calcular22" text="Calcular" GridPane.hgrow="ALWAYS">
                                        <GridPane.margin>
                                           <Insets top="10.0" />
                                        </GridPane.margin>
@@ -193,7 +193,7 @@
                         <Label text="Decimal" GridPane.rowIndex="1" />
                         <Label text="Binario" GridPane.rowIndex="2" />
                         <Label text="Hexadecimal" GridPane.rowIndex="3" />
-                        <Button fx:id="btnConvertir" mnemonicParsing="false" onAction="#convertir" text="Convertir" GridPane.columnIndex="2" />
+                        <Button mnemonicParsing="false" onAction="#convertir" text="Convertir" GridPane.columnIndex="2" />
                      </children>
                   </GridPane>
                </content></Tab>
