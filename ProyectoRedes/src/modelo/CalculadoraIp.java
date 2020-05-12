@@ -14,6 +14,7 @@ public class CalculadoraIp {
 	private String rangoUsable;
 
 	public CalculadoraIp(String ipHost, String ipRed, int mascaraSimplificada) {
+		System.out.println(mascaraSimplificada);
 		this.ipHost = ipHost;
 		this.mascaraSimplificada = mascaraSimplificada;
 		this.mascara = convertirMascaraSimplificadaADecimal(mascaraSimplificada);
@@ -42,7 +43,7 @@ public class CalculadoraIp {
 	}
 
 	public String encontraripBroadCast() {
-		System.out.println(ipRed);
+		int copiaBitsHost = bitsHost;
 		int[] octetosNumericos = Arrays.stream(ipRed.split("\\.")).mapToInt(Integer::parseInt).toArray();
 
 		String ipBroadcast = "";
@@ -55,7 +56,7 @@ public class CalculadoraIp {
 			String nuevoOctetoBinario = "";
 			for (int j = octetoBinario.length() - 1; j >= 0; j--) {
 
-				if (bitsHost == 0) {
+				if (copiaBitsHost == 0) {
 					flag = false;
 				}
 				if (flag) {
@@ -63,7 +64,7 @@ public class CalculadoraIp {
 				} else {
 					nuevoOctetoBinario = octetoBinario.charAt(j) + nuevoOctetoBinario;
 				}
-				bitsHost--;
+				copiaBitsHost--;
 			}
 			ipBroadcast = Integer.parseInt(nuevoOctetoBinario, 2) + ipBroadcast;
 			if (i > 0)
