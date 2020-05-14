@@ -19,18 +19,18 @@ public class CalculadoraIp {
 		this.mascaraSimplificada = mascaraSimplificada;
 		this.mascara = convertirMascaraSimplificadaADecimal(mascaraSimplificada);
 		if (ipRed.isEmpty()) {
-			this.ipRed = encontraripRed();
+			this.ipRed = encontraripRed(ipHost);
 		} else {
 			this.ipRed = ipRed;
 		}
 		this.bitsHost = 32 - mascaraSimplificada;
-		this.cantidadHosts = (int) Math.pow(2, bitsHost);
+		this.cantidadHosts = (int) Math.pow(2, bitsHost) - 2;
 		this.ipBroadcast = encontraripBroadCast();
 		this.rangoUsable = hallarRango();
 	}
 
-	public String encontraripRed() {
-		int[] octetosNumericosIp = Arrays.stream(ipHost.split("\\.")).mapToInt(Integer::parseInt).toArray();
+	public String encontraripRed(String ip) {
+		int[] octetosNumericosIp = Arrays.stream(ip.split("\\.")).mapToInt(Integer::parseInt).toArray();
 		int[] octetosNumericosMascara = Arrays.stream(mascara.split("\\.")).mapToInt(Integer::parseInt).toArray();
 		String ipRed = "";
 		for (int i = 0; i < octetosNumericosIp.length; i++) {
@@ -76,7 +76,7 @@ public class CalculadoraIp {
 
 	public String hallarRango() {
 		String inicioRango = sumarleALaIp(ipRed, 1);
-		String ipResultado = sumarleALaIp(inicioRango, cantidadHosts - 3);
+		String ipResultado = sumarleALaIp(inicioRango, cantidadHosts - 1);
 		return inicioRango + " - " + ipResultado;
 	}
 
@@ -140,6 +140,10 @@ public class CalculadoraIp {
 		String mascara = String.format("%d.%d.%d.%d", (bits & 0x0000000000ff000000L) >> 24,
 				(bits & 0x0000000000ff0000) >> 16, (bits & 0x0000000000ff00) >> 8, bits & 0xff);
 		return mascara;
+	}
+
+	public boolean validarIpRed() {
+		return encontraripRed(ipRed).equals(ipRed);
 	}
 
 	public String getIpHost() {

@@ -115,9 +115,9 @@ public class Controlador {
 					.parseInt(cBoxMascara2.getSelectionModel().getSelectedItem().toString().substring(1));
 
 			CalculadoraIp calculadora = new CalculadoraIp("", ipRed, mascaraSimplificada);
-			String ipRedCalculada = calculadora.getIpRed();
 
-			if (ipRed.equals(calculadora.getIpRed())) {
+
+			if (!calculadora.validarIpRed()) {
 
 				txtFieldMascara.setText(calculadora.getMascara());
 				txtFieldBitsRed.setText(calculadora.getMascaraSimplificada() + "");
@@ -128,8 +128,7 @@ public class Controlador {
 
 			} else {
 				mostrarAlerta("Direccion IP incorrecta",
-						"Verifique que la ip sea una dirección de RED y que corresponda con la mascara seleccionada \n ¿Quiso decir "
-								+ ipRedCalculada + " ?");
+						"Verifique que la ip sea una dirección de RED y que corresponda con la mascara seleccionada");
 			}
 		} else {
 			mostrarAlerta("IP incorrecta", "La dirección ip ingresada no cumple con el formato IPv4");

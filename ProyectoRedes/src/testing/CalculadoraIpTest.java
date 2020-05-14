@@ -11,4 +11,6 @@ class CalculadoraIpTest {
 		fail("Not yet implemented");
 	}
 
+	void testEncontraripRed() {
+	}
 }
