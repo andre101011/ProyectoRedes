@@ -14,7 +14,6 @@ public class CalculadoraIp {
 	private String rangoUsable;
 
 	public CalculadoraIp(String ipHost, String ipRed, int mascaraSimplificada) {
-		System.out.println(mascaraSimplificada);
 		this.ipHost = ipHost;
 		this.mascaraSimplificada = mascaraSimplificada;
 		this.mascara = convertirMascaraSimplificadaADecimal(mascaraSimplificada);
@@ -142,7 +141,13 @@ public class CalculadoraIp {
 		return mascara;
 	}
 
+	// testear esto
+	public boolean validarIpHost() {
+		return !(encontraripRed(ipRed).equals(ipHost) || encontraripBroadCast().equals(ipHost));
+	}
+
 	public boolean validarIpRed() {
+		System.out.println(encontraripRed(ipRed)+"");
 		return encontraripRed(ipRed).equals(ipRed);
 	}
 

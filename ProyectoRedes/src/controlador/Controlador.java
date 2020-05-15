@@ -94,12 +94,14 @@ public class Controlador {
 					.parseInt(cBoxMascara.getSelectionModel().getSelectedItem().toString().substring(1));
 
 			CalculadoraIp calculadora = new CalculadoraIp(ipHost, "", mascaraSimplificada);
-
-			txtFieldDireccionRed.setText(calculadora.getIpRed());
-			txtFieldBroadcast.setText(calculadora.getIpBroadcast());
-			txtFieldCantidadHosts.setText(calculadora.getCantidadHosts() + "");
-			txtFieldRangoHosts.setText(calculadora.getRangoUsable());
-
+			if (calculadora.validarIpHost()) {
+				txtFieldDireccionRed.setText(calculadora.getIpRed());
+				txtFieldBroadcast.setText(calculadora.getIpBroadcast());
+				txtFieldCantidadHosts.setText(calculadora.getCantidadHosts() + "");
+				txtFieldRangoHosts.setText(calculadora.getRangoUsable());
+			} else {
+				mostrarAlerta("IP incorrecta", "La dirección ip ingresada no corresponde a una ip de host");
+			}
 		} else {
 			mostrarAlerta("IP incorrecta", "La dirección ip ingresada no cumple con el formato IPv4");
 
@@ -116,8 +118,7 @@ public class Controlador {
 
 			CalculadoraIp calculadora = new CalculadoraIp("", ipRed, mascaraSimplificada);
 
-
-			if (!calculadora.validarIpRed()) {
+			if (calculadora.validarIpRed()) {
 
 				txtFieldMascara.setText(calculadora.getMascara());
 				txtFieldBitsRed.setText(calculadora.getMascaraSimplificada() + "");
